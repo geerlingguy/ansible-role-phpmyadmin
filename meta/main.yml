@@ -1,0 +1,22 @@
+---
+dependencies:
+  - { role: repo-epel }
+  - { role: apache }
+  - { role: mysql }
+  - { role: php-mysql }
+  - { role: php }
+
+galaxy_info:
+  author: geerlingguy
+  description: PHPMyAdmin installation for RHEL/CentOS 6.x
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+    - database
+    - development
+    - web
