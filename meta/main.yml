@@ -1,10 +1,10 @@
 ---
 dependencies:
-  - { role: repo-epel }
-  - { role: apache }
-  - { role: mysql }
-  - { role: php-mysql }
-  - { role: php }
+  - { role: geerlingguy.repo-epel }
+  - { role: geerlingguy.apache }
+  - { role: geerlingguy.mysql }
+  - { role: geerlingguy.php-mysql }
+  - { role: geerlingguy.php }
 
 galaxy_info:
   author: geerlingguy
