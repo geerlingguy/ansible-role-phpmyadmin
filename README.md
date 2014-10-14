@@ -1,12 +1,16 @@
 # Ansible Role: phpMyAdmin
 
-Installs phpMyAdmin on RHEL/CentOS 6.x.
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-phpmyadmin.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-phpmyadmin)
+
+Installs phpMyAdmin on RHEL/CentOS/Debian/Ubuntu.
 
 phpMyAdmin is a simple interface for interacting with MySQL databases via a web browser. It is not necessarily the most secure or efficient method of managing databases, but for those who need a GUI, this one is better than many others. I (geerlingguy) would personally never run it on a production server, nor do I use it myself (I use Sequel Pro or simply interact with the database via CLI/APIs), but it seems many people like it (especially people stuck on a Windows machine with no good MySQL GUIs :).
 
 ## Requirements
 
-None.
+**RedHat/CentOS**: Requires the EPEL repository on RedHat/CentOS 6.x hosts. You can install the EPEL repository using the `geerlingguy.repo-epel` role.
+
+**Debian/Ubuntu**: None.
 
 ## Role Variables
 
@@ -26,11 +30,10 @@ The username and password with which PHPMyAdmin will attempt to log into the MyS
 
 ## Dependencies
 
-  - geerlingguy.repo-epel
   - geerlingguy.apache
   - geerlingguy.mysql
-  - geerlingguy.php-mysql
   - geerlingguy.php
+  - geerlingguy.php-mysql
 
 ## Example Playbook
 

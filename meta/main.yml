@@ -1,6 +1,5 @@
 ---
 dependencies:
-  - { role: geerlingguy.repo-epel }
   - { role: geerlingguy.apache }
   - { role: geerlingguy.mysql }
   - { role: geerlingguy.php-mysql }
@@ -8,7 +7,7 @@ dependencies:
 
 galaxy_info:
   author: geerlingguy
-  description: PHPMyAdmin installation for RHEL/CentOS 6.x
+  description: PHPMyAdmin installation for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
@@ -16,6 +15,12 @@ galaxy_info:
   - name: EL
     versions:
     - 6
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
   categories:
     - database
     - development
