@@ -14,7 +14,7 @@ phpMyAdmin is a simple interface for interacting with MySQL databases via a web 
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `vars/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
     phpmyadmin_mysql_host: localhost
     phpmyadmin_mysql_port: ""
