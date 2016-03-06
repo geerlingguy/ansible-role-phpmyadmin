@@ -7,12 +7,12 @@
   when: ansible_os_family == 'Debian'
 
 - name: Add default username and password for MySQL connection.
-  lineinfile: >
-    dest=/etc/phpmyadmin/config.inc.php
-    state=present
-    regexp="^.+\['{{ item.key }}'\].+$"
-    line="$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
-    insertbefore="^\?>"
+  lineinfile:
+    dest: /etc/phpmyadmin/config.inc.php
+    state: present
+    regexp: "^.+\['{{ item.key }}'\].+$"
+    line: "$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
+    insertbefore: "^\?>"
   with_items:
   - { key: host, value: "{{ phpmyadmin_mysql_host }}" }
   - { key: port, value: "{{ phpmyadmin_mysql_port }}" }
