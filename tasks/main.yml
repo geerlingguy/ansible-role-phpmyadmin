@@ -12,7 +12,7 @@
     state: present
     regexp: "^.+['{{ item.key }}'].+$"
     line: "$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
-    insertbefore: "^\?>"
+    insertbefore: "^?>"
   with_items:
   - { key: host, value: "{{ phpmyadmin_mysql_host }}" }
   - { key: port, value: "{{ phpmyadmin_mysql_port }}" }
