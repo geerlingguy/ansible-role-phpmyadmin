@@ -10,7 +10,7 @@
   lineinfile:
     dest: /etc/phpmyadmin/config.inc.php
     state: present
-    regexp: "^.+\['{{ item.key }}'\].+$"
+    regexp: "^.+['{{ item.key }}'].+$"
     line: "$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
     insertbefore: "^\?>"
   with_items:
