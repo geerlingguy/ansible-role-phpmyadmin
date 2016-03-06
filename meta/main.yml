@@ -1,27 +1,27 @@
 ---
 dependencies:
-  - { role: geerlingguy.apache }
-  - { role: geerlingguy.mysql }
-  - { role: geerlingguy.php-mysql }
-  - { role: geerlingguy.php }
+  - geerlingguy.apache
+  - geerlingguy.mysql
+  - geerlingguy.php-mysql
+  - geerlingguy.php
 
 galaxy_info:
   author: geerlingguy
   description: PHPMyAdmin installation for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.4
+  min_ansible_version: 1.8
   platforms:
-  - name: EL
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
-  categories:
+    - name: EL
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+  galaxy_tags:
     - database
     - development
     - web
