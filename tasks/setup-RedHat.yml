@@ -1,4 +1,4 @@
 ---
 - name: Ensure PHPMyAdmin is installed.
-  yum: name=phpmyadmin state=installed enablerepo=epel
+  yum: name=phpmyadmin state=installed enablerepo=epel,remi-php70
   notify: restart apache
