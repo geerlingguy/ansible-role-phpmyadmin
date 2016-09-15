@@ -2,7 +2,8 @@
 - hosts: all
 
   vars:
-    php_enablerepo: "remi,remi-php56"
+    php_enablerepo: "remi,remi-php70"
+    phpmyadmin_enablerepo: "remi,remi-php70"
 
   pre_tasks:
     - name: Update apt cache.
@@ -31,6 +32,8 @@
   roles:
     - role: geerlingguy.repo-remi
       when: ansible_os_family == 'RedHat'
+    - role: geerlingguy.repo-dotdeb
+      when: ansible_distribution == 'Debian'
     - geerlingguy.apache
     - geerlingguy.mysql
     - geerlingguy.php
