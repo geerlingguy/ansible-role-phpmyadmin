@@ -2,7 +2,7 @@
 - hosts: all
 
   vars:
-    php_enablerepo: "remi,remi-php70"
+    php_enablerepo: "remi,remi-php56"
 
   pre_tasks:
     - name: Update apt cache.
@@ -15,6 +15,18 @@
     - name: Include CentOS 7-specific vars.
       include_vars: centos7-vars.yml
       when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == "7"
+
+    - name: Set php_packages for PHP 7.0 Debian 8 install.
+      set_fact:
+        php_packages:
+          - php7.0-common
+          - php7.0-cli
+          - php7.0-dev
+          - php7.0-fpm
+          - libpcre3-dev
+          - php7.0-opcache
+          - php7.0-apcu
+      when: ansible_distribution == 'Debian'
 
   roles:
     - role: geerlingguy.repo-remi
