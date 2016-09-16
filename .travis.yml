@@ -42,7 +42,7 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Check if PHPMyAdmin is reachable.
+  # Check if phpMyAdmin is reachable.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm curl http://127.0.0.1/phpmyadmin/'
 
 after_success:

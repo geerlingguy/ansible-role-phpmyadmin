@@ -1,9 +1,9 @@
 ---
-- name: Ensure PHPMyAdmin is installed.
+- name: Ensure phpMyAdmin is installed.
   apt: name=phpmyadmin state=installed
   notify: restart apache
 
-- name: Ensure PHPMyAdmin config file is included in Apache config.
+- name: Ensure phpMyAdmin config file is included in Apache config.
   lineinfile:
     dest: /etc/apache2/apache2.conf
     state: present

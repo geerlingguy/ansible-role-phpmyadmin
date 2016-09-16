@@ -8,7 +8,7 @@
 
 - name: Add default username and password for MySQL connection.
   lineinfile: >
-    dest=/etc/phpmyadmin/config.inc.php
+    dest={{ phpmyadmin_config_file }}
     state=present
     regexp="^.+\['{{ item.key }}'\].+$"
     line="$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"

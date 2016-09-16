@@ -3,6 +3,8 @@
 # for RHEL/CentOS.
 phpmyadmin_enablerepo: epel
 
+phpmyadmin_config_file: /etc/phpmyadmin/config.inc.php
+
 phpmyadmin_mysql_host: localhost
 phpmyadmin_mysql_port: ""
 phpmyadmin_mysql_socket: ""

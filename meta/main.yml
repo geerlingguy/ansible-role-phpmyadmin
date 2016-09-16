@@ -7,7 +7,7 @@ dependencies:
 
 galaxy_info:
   author: geerlingguy
-  description: PHPMyAdmin installation for Linux
+  description: phpMyAdmin installation for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.8
