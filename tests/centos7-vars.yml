@@ -1,6 +1,4 @@
 ---
-phpmyadmin_config_file: /etc/phpMyAdmin/config.inc.php
-
 mysql_packages:
   - mariadb
   - mariadb-server
