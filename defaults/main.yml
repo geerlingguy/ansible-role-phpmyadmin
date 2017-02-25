@@ -12,3 +12,11 @@ phpmyadmin_mysql_socket: ""
 phpmyadmin_mysql_connect_type: tcp
 phpmyadmin_mysql_user: root
 phpmyadmin_mysql_password: "{{ mysql_root_password }}"
+
+# Set to true if you wish to autologin as user ( root by default )
+phpmyadmin_auto_login: false
+
+# You may change this to whatever you like for aliasing
+# e.g If you set this to "pma" phpMyAdmin is available at http://host.or.ip/pma
+# By default http://host.or.ip/phpmyadmin
+phpmyadmin_alias: phpmyadmin
