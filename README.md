@@ -36,9 +36,23 @@ These variables define the connection method and hostname phpMyAdmin will use to
 
 The username and password with which phpMyAdmin will attempt to log into the MySQL server. The `mysql_root_password` should be set as part of the `geerlingguy.mysql` role, but you can change the user and password to another account entirely, and you most defintely *should*, especially if you're connecting to a non-development database server!
 
+If you want to use nginx could, you can put phpmyadmin from the sources to do this, edit the variables in the configuration.
+
+    phpmyadmin_install_from_source: true
+
+It is also available in the following variables:
+
+    import_phpmyadmin_db: true
+    phpmyadmin_version: 4.7.5
+    phpmyadmin_install_dir: "/usr/share/phpmyadmin"
+    phpmyadmin_create_tables_sql: "{{ phpmyadmin_install_dir }}/sql/create_tables.sql"
+
+In the configuration file, I added the $cfg['AuthLog'] = 'syslog'; This makes it possible to protect access with fail2ban.
+
 ## Dependencies
 
-  - geerlingguy.apache
+  - { role: geerlingguy.apache,  when: not phpmyadmin_install_from_source }
+  - { role: geerlingguy.nginx,  when: phpmyadmin_install_from_source }
   - geerlingguy.mysql
   - geerlingguy.php
   - geerlingguy.php-mysql

@@ -1,0 +1,89 @@
+---
+- name: install required binary packages
+  apt: name={{item}} state=installed
+  with_items:
+  - pwgen
+  - unzip
+  when: ansible_os_family == 'Debian'
+
+- name: PHPMyAdmin is removed.
+  apt: pkg=phpmyadmin state=absent
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: install required binary packages
+  yum: name={{item}} state=installed
+  with_items:
+  - pwgen
+  - unzip
+  when: ansible_os_family == 'RedHat'
+
+- name: PHPMyAdmin is removed.
+  yum: pkg=phpmyadmin state=absent
+  become: true
+  when: ansible_os_family == 'RedHat'
+
+- name: PHPMyAdmin download package
+  get_url:
+    url: https://files.phpmyadmin.net/phpMyAdmin/{{ phpmyadmin_version }}/phpMyAdmin-{{ phpmyadmin_version }}-all-languages.zip
+    dest: /tmp/
+    validate_certs: no
+
+- name: PHPMyAdmin Extract package
+  become: yes
+  unarchive:
+    src: /tmp/phpMyAdmin-{{ phpmyadmin_version }}-all-languages.zip
+    dest: /tmp/
+    copy: no
+
+- name: PHPMyAdmin remove "{{ phpmyadmin_install_dir }}"
+  file:
+    path: "{{ phpmyadmin_install_dir }}"
+    state: absent
+  become: yes
+
+- name: PHPMyAdmin copy to "{{ phpmyadmin_install_dir }}"
+  command: mv /tmp/phpMyAdmin-{{ phpmyadmin_version }}-all-languages "{{ phpmyadmin_install_dir }}"
+  become: yes
+
+- name: PHPMyAdmin remove "{{ phpmyadmin_install_dir }}/setup"
+  file:
+    path: "{{ phpmyadmin_install_dir }}/setup"
+    state: absent
+  become: yes
+
+- name: PHPMyAdmin change owner to "{{ phpmyadmin_install_dir }}"
+  file:
+    path: "{{ phpmyadmin_install_dir }}"
+    owner: '{{ pma_user }}'
+    recurse: yes
+  become: yes
+
+- name: Creating random des_key for phpmyadmin
+  shell: pwgen 32
+  register: phpmyadmin_random_des_key
+
+- name: Copy phpmyadmin configuration files
+  template: src={{ item }}.j2 dest={{ phpmyadmin_install_dir }}/{{ item }} owner={{ pma_user }} group={{ pma_user }}
+  with_items:
+    - config.inc.php
+    - config-db.php
+  become: yes
+
+# https://docs.phpmyadmin.net/en/latest/setup.html#manual-configuration
+- name: creating phpmyadmin database
+  mysql_db: name=phpmyadmin state=present
+  become: yes
+
+- name: creating MySQL user for phpmyadmin
+  mysql_user: name={{ phpmyadmin_mysql_user }} password={{phpmyadmin_mysql_password}} priv=phpmyadmin.*:ALL state=present
+  become: yes
+
+- name: Define create_tables_sql
+  stat: "path={{ phpmyadmin_create_tables_sql }}"
+  register: create_tables_sql
+
+- name: Import PHPMyAdmin DB.
+  mysql_db: name=phpmyadmin state=import target={{ phpmyadmin_create_tables_sql }}
+  when: import_phpmyadmin_db and create_tables_sql.stat.exists
+  become: yes

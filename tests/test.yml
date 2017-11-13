@@ -29,12 +29,18 @@
           - php7.0-apcu
       when: ansible_distribution == 'Debian'
 
+    - name: Set php_webserver_daemon
+      set_fact:
+        php_webserver_daemon: nginx
+      when: phpmyadmin_install_from_source
+
   roles:
     - role: geerlingguy.repo-remi
       when: ansible_os_family == 'RedHat'
     - role: geerlingguy.repo-dotdeb
       when: ansible_distribution == 'Debian'
-    - geerlingguy.apache
+    - { role: geerlingguy.apache,  when: not phpmyadmin_install_from_source }
+    - { role: geerlingguy.nginx,  when: phpmyadmin_install_from_source }
     - geerlingguy.mysql
     - geerlingguy.php
     - geerlingguy.php-mysql

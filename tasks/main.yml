@@ -9,23 +9,9 @@
   when: phpmyadmin_config_file is not defined
 
 # Setup/install tasks.
-- include: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- include: install-from-repo.yml
+  when: not phpmyadmin_install_from_source
 
-- include: setup-Debian.yml
-  when: ansible_os_family == 'Debian'
+- include: install-from-source.yml
+  when: phpmyadmin_install_from_source
 
-- name: Add default username and password for MySQL connection.
-  lineinfile: >
-    dest={{ phpmyadmin_config_file }}
-    state=present
-    regexp="^.+\['{{ item.key }}'\].+$"
-    line="$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
-    insertbefore="^\?>"
-  with_items:
-  - { key: host, value: "{{ phpmyadmin_mysql_host }}" }
-  - { key: port, value: "{{ phpmyadmin_mysql_port }}" }
-  - { key: socket, value: "{{ phpmyadmin_mysql_socket }}" }
-  - { key: connect_type, value: "{{ phpmyadmin_mysql_connect_type }}" }
-  - { key: user, value: "{{ phpmyadmin_mysql_user }}" }
-  - { key: password, value: "{{ phpmyadmin_mysql_password }}"}

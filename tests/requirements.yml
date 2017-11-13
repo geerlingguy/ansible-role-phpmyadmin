@@ -2,6 +2,9 @@
 - src: geerlingguy.repo-remi
 - src: geerlingguy.repo-dotdeb
 - src: geerlingguy.apache
+  when: not phpmyadmin_install_from_source
+- src: geerlingguy.nginx
+  when: phpmyadmin_install_from_source
 - src: geerlingguy.mysql
 - src: geerlingguy.php
 - src: geerlingguy.php-mysql

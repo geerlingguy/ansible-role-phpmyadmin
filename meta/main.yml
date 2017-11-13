@@ -1,6 +1,7 @@
 ---
 dependencies:
-  - geerlingguy.apache
+  - { role: geerlingguy.apache,  when: not phpmyadmin_install_from_source }
+  - { role: geerlingguy.nginx,  when: phpmyadmin_install_from_source }
   - geerlingguy.mysql
   - geerlingguy.php-mysql
   - geerlingguy.php

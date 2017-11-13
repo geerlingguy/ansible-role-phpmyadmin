@@ -1,2 +1,3 @@
 ---
 __phpmyadmin_config_file: /etc/phpmyadmin/config.inc.php
+pma_user: www-data
