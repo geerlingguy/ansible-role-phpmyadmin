@@ -1,27 +1,12 @@
 ---
 - name: install required binary packages
-  apt: name={{item}} state=installed
+  package: name={{item}} state=installed
   with_items:
   - pwgen
   - unzip
-  when: ansible_os_family == 'Debian'
 
 - name: PHPMyAdmin is removed.
-  apt: pkg=phpmyadmin state=absent
-  become: true
-  when: ansible_os_family == 'Debian'
-
-- name: install required binary packages
-  yum: name={{item}} state=installed
-  with_items:
-  - pwgen
-  - unzip
-  when: ansible_os_family == 'RedHat'
-
-- name: PHPMyAdmin is removed.
-  yum: pkg=phpmyadmin state=absent
-  become: true
-  when: ansible_os_family == 'RedHat'
+  package: name=phpmyadmin state=absent
 
 - name: PHPMyAdmin download package
   get_url:
