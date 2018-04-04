@@ -1,6 +1,6 @@
 ---
 - name: Ensure phpMyAdmin is installed.
-  apt: name=phpmyadmin state=installed
+  apt: name=phpmyadmin state=present
   notify: restart apache
 
 - name: Ensure phpMyAdmin config file is included in Apache config.
