@@ -1,5 +1,7 @@
 ---
-- hosts: all
+- name: Converge
+  hosts: all
+  become: true
 
   vars:
     php_enablerepo: "remi,remi-php70"
@@ -7,15 +9,8 @@
 
   pre_tasks:
     - name: Update apt cache.
-      apt: update_cache=yes cache_valid_time=600
+      apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
-
-    - name: Ensure test dependencies are present.
-      package: name=curl state=present
-
-    - name: Include CentOS 7-specific vars.
-      include_vars: centos7-vars.yml
-      when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == "7"
 
     - name: Set php_packages for PHP 7.0 Debian 8 install.
       set_fact:
@@ -34,8 +29,18 @@
       when: ansible_os_family == 'RedHat'
     - role: geerlingguy.repo-dotdeb
       when: ansible_distribution == 'Debian'
-    - geerlingguy.apache
-    - geerlingguy.mysql
-    - geerlingguy.php
-    - geerlingguy.php-mysql
-    - role_under_test
+    - role: geerlingguy.apache
+    - role: geerlingguy.mysql
+    - role: geerlingguy.php
+    - role: geerlingguy.php-mysql
+    - role: geerlingguy.phpmyadmin
+
+  post_tasks:
+    - name: Ensure phpMyAdmin is running on the specified port.
+      uri:
+        url: "http://127.0.0.1/phpmyadmin/"
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 60
+      delay: 1
