@@ -36,7 +36,7 @@
     - role: geerlingguy.phpmyadmin
 
   post_tasks:
-    - name: Ensure phpMyAdmin is running on the specified port.
+    - name: Ensure phpMyAdmin is running.
       uri:
         url: "http://127.0.0.1/phpmyadmin/"
         status_code: 200
