@@ -23,6 +23,15 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
 scenario:
   name: default
+  test_sequence:
+    - lint
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
 verifier:
   name: testinfra
   lint:
