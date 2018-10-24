@@ -28,6 +28,7 @@ scenario:
     - destroy
     - syntax
     - create
+    - dependency
     - prepare
     - converge
     - verify
