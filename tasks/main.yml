@@ -8,6 +8,16 @@
     phpmyadmin_config_file: "{{ __phpmyadmin_config_file }}"
   when: phpmyadmin_config_file is not defined
 
+- name: Define phpmyadmin_apache_config_file.
+  set_fact:
+    phpmyadmin_apache_config_file: "{{ __phpmyadmin_apache_config_file }}"
+  when: phpmyadmin_apache_config_file is not defined
+
+- name: Define phpmyadmin_webserver_daemon.
+  set_fact:
+    php_webserver_daemon: "{{ __phpmyadmin_webserver_daemon }}"
+  when: phpmyadmin_webserver_daemon is not defined
+
 # Setup/install tasks.
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
@@ -36,3 +46,12 @@
     - key: password
       value: "{{ phpmyadmin_mysql_password }}"
   when: phpmyadmin_use_default_config
+
+- name: Configuring apache virtual site for phpmyadmin.
+  template:
+    src: "{{ phpmyadmin_apache_template_path }}"
+    dest: "{{ phpmyadmin_apache_config_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart webserver

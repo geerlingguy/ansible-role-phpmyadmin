@@ -1,2 +1,5 @@
 ---
 __phpmyadmin_config_file: /etc/phpMyAdmin/config.inc.php
+__phpmyadmin_apache_config_file: /etc/httpd/conf.d/phpMyAdmin.conf
+
+__phpmyadmin_webserver_daemon: "httpd"

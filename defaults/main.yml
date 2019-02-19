@@ -3,7 +3,10 @@
 # for RHEL/CentOS.
 phpmyadmin_enablerepo: epel
 
-# set to false if custom config will be copied to host separately
+# Set this to false if you're not using phpMyAdmin with Apache/Nginx/etc.
+phpmyadmin_enable_webserver: true
+
+# set to false if custom phpmyadmin config will be copied to host separately
 phpmyadmin_use_default_config: true
 
 # Override if needed. This is set platform-specific in the vars dir if not set.
@@ -15,3 +18,15 @@ phpmyadmin_mysql_socket: ""
 phpmyadmin_mysql_connect_type: tcp
 phpmyadmin_mysql_user: root
 phpmyadmin_mysql_password: "{{ mysql_root_password }}"
+
+phpmyadmin_apache_template_path: phpmyadmin.conf.j2
+
+# Apache phpmyadmin.conf ip address access to phpmyadmin root and setup webpages
+# (can use a list of values)
+phpmyadmin_allow_access_ip:
+  - 127.0.0.1
+  - ::1
+
+phpmyadmin_allow_setup_ip:
+  - 127.0.0.1
+  - ::1
