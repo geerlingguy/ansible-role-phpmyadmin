@@ -35,3 +35,4 @@
       value: "{{ phpmyadmin_mysql_user }}"
     - key: password
       value: "{{ phpmyadmin_mysql_password }}"
+  when: phpmyadmin_use_default_config
