@@ -15,8 +15,8 @@ Alias /phpmyadmin /usr/share/phpMyAdmin
      # Apache 2.4
      <RequireAny>
 {% if phpmyadmin_allow_access_ip is defined %}
-{% for require_ip, value in phpmyadmin_allow_access_ip.items() | list %}
-       Require ip "{{ value }}"
+{% for ip in phpmyadmin_allow_access_ip %}
+       Require ip {{ ip }}
 {% endfor %}
 {% else %}
        Require ip 127.0.0.1
@@ -29,8 +29,8 @@ Alias /phpmyadmin /usr/share/phpMyAdmin
      Order Deny,Allow
      Deny from All
 {% if phpmyadmin_allow_access_ip is defined %}
-{% for allow_from, value in phpmyadmin_allow_access_ip.items() | list %}
-       Allow from "{{ value }}"
+{% for ip in phpmyadmin_allow_access_ip %}
+       Allow from {{ ip }}
 {% endfor %}
 {% else %}
        Allow from 127.0.0.1
@@ -44,8 +44,8 @@ Alias /phpmyadmin /usr/share/phpMyAdmin
      # Apache 2.4
      <RequireAny>
 {% if phpmyadmin_allow_setup_ip is defined %}
-{% for require_ip, value in phpmyadmin_allow_setup_ip.items() | list %}
-       Require ip "{{ value }}"
+{% for ip in phpmyadmin_allow_setup_ip %}
+       Require ip {{ ip }}
 {% endfor %}
 {% else %}
        Require ip 127.0.0.1
@@ -58,8 +58,8 @@ Alias /phpmyadmin /usr/share/phpMyAdmin
      Order Deny,Allow
      Deny from All
 {% if phpmyadmin_allow_setup_ip is defined %}
-{% for allow_from, value in phpmyadmin_allow_setup_ip.items() | list %}
-       Allow from "{{ value }}"
+{% for ip in phpmyadmin_allow_setup_ip %}
+       Allow from {{ ip }}
 {% endfor %}
 {% else %}
        Allow from 127.0.0.1
