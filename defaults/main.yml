@@ -12,6 +12,7 @@ phpmyadmin_use_default_config: true
 # Override if needed. This is set platform-specific in the vars dir if not set.
 # phpmyadmin_config_file: /etc/phpmyadmin/config.inc.php
 
+# Specific variables set in the default config.inc.php file
 phpmyadmin_mysql_host: localhost
 phpmyadmin_mysql_port: ""
 phpmyadmin_mysql_socket: ""
@@ -19,10 +20,12 @@ phpmyadmin_mysql_connect_type: tcp
 phpmyadmin_mysql_user: root
 phpmyadmin_mysql_password: "{{ mysql_root_password }}"
 
+# Local path to Jinja2 template for generating Apache virtual server file
 phpmyadmin_apache_template_path: phpmyadmin.conf.j2
 
-# Apache phpmyadmin.conf ip address access to phpmyadmin root and setup webpages
-# (can use a list of values)
+# IP addresses allowed to access phpmyadmin root and setup sites defined in
+# Apache phpmyadmin.conf (can use a list of values).
+
 phpmyadmin_allow_access_ip:
   - 127.0.0.1
   - ::1

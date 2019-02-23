@@ -20,7 +20,11 @@ phpMyAdmin is a simple interface for interacting with MySQL databases via a web 
 
     phpmyadmin_config_file: /etc/phpmyadmin/config.inc.php
 
-The path to the phpMyAdmin config file.
+The path to the phpMyAdmin config file. Platform specific values are defined in role vars directory.
+
+    phpmyadmin_use_default_config: true
+
+Whether to use the included default phpMyAdmin config file, defined with the following variables. Set this to `false` and copy your own `config.inc.php` file into the `phpmyadmin_config_path` if you'd like to use a more complicated setup. If this variable is set to `true`, all other configuration will be taken from phpMyAdmin's own [default config](https://docs.phpmyadmin.net/en/latest/config.html).
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
@@ -35,6 +39,20 @@ These variables define the connection method and hostname phpMyAdmin will use to
     phpmyadmin_mysql_password: "{{ mysql_root_password }}"
 
 The username and password with which phpMyAdmin will attempt to log into the MySQL server. The `mysql_root_password` should be set as part of the `geerlingguy.mysql` role, but you can change the user and password to another account entirely, and you most defintely *should*, especially if you're connecting to a non-development database server!
+
+    phpmyadmin_apache_template_path: phpmyadmin.conf.j2
+
+Path to a template for generating an Apache proxy config file. Defaults to the template inside `templates/phpmyadmin.conf.j2`. This path should be relative to the directory from which you run your playbook.
+
+    phpmyadmin_allow_access_ip:
+      - 127.0.0.1
+      - ::1
+    phpmyadmin_allow_setup_ip:
+      - 127.0.0.1
+      - ::1
+
+These variables define the IP addresses allowed to access phpmyadmin root and setup sites defined in the Apache phpmyadmin.conf files (can use a list of values). Default values for both variables are the localhost addresses.
+
 
 ## Dependencies
 
