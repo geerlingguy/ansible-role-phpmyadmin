@@ -14,7 +14,7 @@ phpMyAdmin is a simple interface for interacting with MySQL databases via a web 
 
 ## Role Variables
 
-    php_enablerepo: ""
+    phpmyadmin_enablerepo: ""
 
 (RedHat/CentOS only) If you have enabled any additional repositories (might I suggest [geerlingguy.repo-epel](https://github.com/geerlingguy/ansible-role-repo-epel) or [geerlingguy.repo-remi](https://github.com/geerlingguy/ansible-role-repo-remi)), those repositories can be listed under this variable (e.g. `remi-php70,epel`). This can be handy, as an example, if you want to install the latest version of PHP 7.0 with the latest version of phpMyAdmin, which is in the Remi repository.
 
