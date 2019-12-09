@@ -4,6 +4,7 @@
   become: true
 
   vars:
+    php_version: "7.3"
     phpmyadmin_enablerepo: "remi,remi-php73"
 
   pre_tasks:
