@@ -1,4 +1,7 @@
 ---
 - name: Ensure phpMyAdmin is installed.
-  yum: name=phpmyadmin state=present enablerepo={{ phpmyadmin_enablerepo }}
+  yum:
+    name: phpmyadmin
+    state: present
+    enablerepo: "{{ phpmyadmin_enablerepo }}"
   notify: restart apache

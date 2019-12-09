@@ -5,7 +5,6 @@ phpmyadmin_enablerepo: epel
 
 # Override if needed. This is set platform-specific in the vars dir if not set.
 # phpmyadmin_config_file: /etc/phpmyadmin/config.inc.php
-
 phpmyadmin_mysql_host: localhost
 phpmyadmin_mysql_port: ""
 phpmyadmin_mysql_socket: ""
