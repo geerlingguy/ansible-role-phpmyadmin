@@ -6,6 +6,7 @@
   vars:
     php_version: "7.3"
     phpmyadmin_enablerepo: "remi,remi-php73"
+    mysql_python_package_debian: python3-mysqldb
 
   pre_tasks:
     - name: Update apt cache.
