@@ -6,6 +6,7 @@ dependencies:
   - geerlingguy.php
 
 galaxy_info:
+  role_name: phpmyadmin
   author: geerlingguy
   description: phpMyAdmin installation for Linux
   company: "Midwestern Mac, LLC"
