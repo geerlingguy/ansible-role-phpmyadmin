@@ -12,4 +12,5 @@
     regexp: "^Include.+phpmyadmin.+$"
     line: "Include /etc/phpmyadmin/apache.conf"
     insertafter: "EOF"
+    mode: preserve
   notify: restart apache

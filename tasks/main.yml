@@ -22,6 +22,7 @@
     regexp="^.+\['{{ item.key }}'\].+$"
     line="$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
     insertbefore="^\?>"
+    mode=preserve
   with_items:
     - key: host
       value: "{{ phpmyadmin_mysql_host }}"

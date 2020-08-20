@@ -8,7 +8,8 @@ env:
   matrix:
     - MOLECULE_DISTRO: centos8
     - MOLECULE_DISTRO: ubuntu2004
-    - MOLECULE_DISTRO: debian10
+    # See: https://github.com/geerlingguy/ansible-role-phpmyadmin/issues/17
+    # - MOLECULE_DISTRO: debian10
 
 before_install:
   # Upgrade Docker to work with docker-py.
