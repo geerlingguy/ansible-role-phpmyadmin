@@ -1,6 +1,6 @@
 # Ansible Role: phpMyAdmin
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-phpmyadmin.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-phpmyadmin)
+[![CI](https://github.com/geerlingguy/ansible-role-phpmyadmin/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-phpmyadmin/actions?query=workflow%3ACI)
 
 Installs phpMyAdmin on RHEL/CentOS/Debian/Ubuntu.
 
